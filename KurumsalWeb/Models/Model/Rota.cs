@@ -14,13 +14,16 @@ namespace KurumsalWeb.Models.Model
     {
         [Key]
         public int RotaId { get; set; }
-        [Required]
-        public DbGeography BaslangicGeography { get; set; }
-        [Required]
-        public DbGeography BitisGeography { get; set; }
 
-        public int? KullaniciId { get; set; }
-        public Kullanici Kullanici { get; set; }
+        //latitude,longitude degerlerini tutacak
+        [Required]
+        public String startPoint { get; set; }
+
+        //latitude,longitude degerlerini tutacak
+        [Required]
+        public String endPoint { get; set; }
+
+        public int? userId { get; set; }
 
     }
 }

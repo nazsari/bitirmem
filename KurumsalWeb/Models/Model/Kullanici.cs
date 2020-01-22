@@ -12,12 +12,22 @@ namespace KurumsalWeb.Models.Model
     {
         [Key]
         public int KullaniciId { get; set; }
+
         [Required,StringLength(100,ErrorMessage = "100 Karakter Olmalidir")]
         public string Ad { get; set; }
         [Required, StringLength(100, ErrorMessage = "100 Karakter Olmalidir")]
+        
         public string Soyad { get; set; }
-        public int? AdminId { get; set; }
-        public Admin Admin { get; set; }
-        public ICollection<Rota> Rotas { get; set; }
+
+                
+        [Required, StringLength(50,ErrorMessage ="50 Karakter olmalidir" )]
+        public string Eposta { get; set; }
+        
+        [Required, StringLength(50,ErrorMessage = "50 Karakter olmalidir")]
+        public string Sifre { get; set; }
+        
+        //0 normal kullanici, 1 admin kullanici
+        public Boolean? isAdmin { get; set; }
+
     }
 }

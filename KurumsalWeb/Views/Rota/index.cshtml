@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #routeMap {
+            height: 100%;
+            width: 100%;
+        }
+        </style>
+    </head>
+    <body>
+<h2>Rota gosterimi</h2>
+
+<div id="routeMap" ></div>
+
+
+<script type="text/javascript">
+
+    function initMap() {
+        let startLocation = new google.maps.LatLng(37.586512,36.9237453);
+        let endLocation = new google.maps.LatLng(41.019652,28.9453913);
+        myOptions = {zoom: 7, center: startLocation};
+        map = new google.maps.Map(document.getElementById('routeMap'), myOptions);
+        // Instantiate a directions service.
+        directionsService = new google.maps.DirectionsService;
+        directionsDisplay = new google.maps.DirectionsRenderer({map: map});
+        markerA = new google.maps.Marker({
+          position: startLocation,
+          title: "Başlangıç Noktası",
+          label: "A",
+          map: map
+        });
+        markerB = new google.maps.Marker({
+          position: endLocation,
+          title: "Bitiş Noktası",
+          label: "B",
+          map: map
+        });
+    
+        // get route from A to B
+        calculateAndDisplayRoute(directionsService, directionsDisplay, startLocation, endLocation);
+    }
+    
+    function calculateAndDisplayRoute(directionsService, directionsDisplay, startLocation, endLocation) {
+        directionsService.route({
+            origin: startLocation,
+            destination: endLocation,
+            travelMode: google.maps.TravelMode.DRIVING
+        }, 
+        function(response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+    }
+
+    
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtNEeBz2cWvWKglRPw6nX-c1oxsuWyasQ&libraries=places&callback=initMap"></script>
+</body>
+</html>

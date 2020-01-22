@@ -10,13 +10,17 @@ namespace KurumsalWeb.Models.Model
     [Table("Admin")]
     public class Admin
     {
-     [Key]
+        [Key]
         public int AdminId { get; set; }
+        
         [Required, StringLength(50,ErrorMessage ="50 Karakter olmalidir" )]
         public string Eposta { get; set; }
+        
         [Required, StringLength(50,ErrorMessage = "50 Karakter olmalidir")]
         public string Sifre { get; set; }
+        
         public string Yetki { get; set; }
+        
         public ICollection<Kullanici> Kullanicis { get; set; }
     }
 }
